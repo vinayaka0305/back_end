@@ -1,6 +1,5 @@
 const Events = require('events');
 
-
 const eventHandler = new Events()
 
 eventHandler.on('call',()=>{

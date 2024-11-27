@@ -1,0 +1,99 @@
+how node js works ?
+
+* Node js is not working on single thread 
+* Any incoming request first it will go inside event queue 
+* event loop will take one request from event queue
+* event loop will process non - blocking operation and send back the result 
+* In event loop for blocking operation separate theread will be created from the thread pool
+
+
+Event driven->
+
+* A call back function is called when an event triggers 
+* A event loop that listens for event triggers and calls the corresponding event handler for that events
+* These events are accessed via 'event' module
+* It consists of the event listener and an event emitter;
+
+
+API
+
+Application Programming Interface 
+
+* It is a set of commands, functions or protocol that act as intermeadiary b/w two applications
+
+REST API;
+
+Representations state transfer 
+*It means the trasfer of the state via http
+*format such as json,html,xml ,plain text;
+*Rest will work only on http protocol;
+*http methods get,post,patch;
+
+
+
+MERN->
+
+MangoDB,Express Js,React Js, Node.js
+
+the react and others are the front end libraries using these it is easy to build UI;
+
+In the frame work and library most of the time we use packages	
+
+Nodes js is not a language -> 
+
+*To run the javascript outside the browser and node js will help to setup backend
+
+* Set up means they have inbuild modules like file system (default) , http module, by using the node we write the back end code
+
+Express js
+(it will help to develop the rest api)
+
+* First of all the express js is a frame work for node js 
+* It is easy to build 
+* It supports routing
+* It supports view rendering(it can able to render the front end code also,html,css,js together we can write it and we can render from the backend);
+* It supports middleware  (tunnel requests)  (any code that is in the backend multiple validation will happen ,middleware means a set of validation , if everything is proper than only you can receive the data)
+
+First express js project setup---->
+
+* For any js projects we need package.json
+* To create package.json
+-> npm init
+-> npm install express
+->after we have to create index.js and app.js
+-> the starting file will always be index.js so we add "start":"node index"
+
+->inside the index.js put console.log("express ");
+-> After that inside the app.js we have to import the particular package require('express') const express = require("express");
+-> after that we have to execute that function  const app = express() (then only all the return data it will store) inside the app;
+
+Simple get method we are going to write now->
+
+app.get('',(req,res)=>{
+	res.send("<h1>hello world</h1>")
+})
+->It consists of two parameter   
+1.one is empty string
+2.callback function() it consists of the request and reponse 
+ 
+response means sending the data to the front end 
+
+After that we have to export that variable module.export = app;
+
+
+->After exporting the app we have to import inside the app.js file
+
+const app = require("./app")
+
+app.listen(8080,()=>{
+console.log("server is listening on port 8080")
+})
+
+
+
+
+
+
+
+
+
