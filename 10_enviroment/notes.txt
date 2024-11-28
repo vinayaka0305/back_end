@@ -1,0 +1,28 @@
+if we go the company these are the procedures,,
+
+QA->Quality Assurance;
+UAT->User Acceptance Testing
+PRODUCTION(final code publish in the real time server);
+
+whatever the code we going to write there will some stages are 
+
+like below 
+
+QA->UAT->PRODUCTION
+-------------------------------------------------------------------------------------
+
+Enviroment variables
+
+any constant variables that we using like port:8088, we are store in one common place,
+to set up some Enviroment variables we have to create a file .env
+->PORT=8088;
+cmd-> npm install dotenv
+index.js->
+const dotenv = require('dotenv');
+dotenv.config();
+->process.env.PORT
+
+when we want to Enviroment variables?
+- any constant value such as PORT number,url,hardcoded string
+- mainly used to change data in different enviroment
+
