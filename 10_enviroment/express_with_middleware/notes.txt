@@ -1,0 +1,9 @@
+Middle ware;
+
+Any request that is going to come to the backend it will pass through certain set of function then only we able to give the particular requests
+
+why means->
+- validation we are going to check
+- proper token is there or not after this only it will give the response;
+
+
