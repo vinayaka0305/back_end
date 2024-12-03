@@ -26,3 +26,25 @@ when we want to Enviroment variables?
 - any constant value such as PORT number,url,hardcoded string
 - mainly used to change data in different enviroment
 
+-----------------------------------------------------------------
+Enviroment variable revision
+
+->using enviroment variable we can configure our application constants outside of our codebase
+->.env is a separate file
+-> in that separate file any configuration of constant variable like portnumber,database name,password everything we can keep in the separate file
+
+-> it provides the information about the enviroment in which process is running
+->It handles senstive data like db username,db password, payment keys   
+
+
+----------------------------------------------------------------------------------
+route parameter or params;
+
+http://locahost:8088/product/22
+//22 is the route parameter or params
+// passing dynamic value in the url is called dynamic API or dynami RESTAPI;
+
+Query params
+http://locahost:8088/product?search="name":"lg"&"price"="200"
+-> these are the optional params
+

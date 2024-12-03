@@ -1,0 +1,64 @@
+Here’s a simplified explanation of the assignment details using easier words:
+
+1. **Purpose**:  
+   The goal is to create an API that reads data from a file and sends it to the frontend in JSON format.
+
+2. **How the data is read**:  
+   - There are two ways to read files in Node.js: **blocking** (synchronous) and **non-blocking** (asynchronous).  
+   - For this assignment, you'll use **blocking code** because the file should be ready before the server starts.  
+   - You'll use the `fs` module (not `fs/promises`) to read the file.
+
+3. **Why blocking is used**:  
+   Node.js uses a threadpool for blocking operations, so when the server handles the file, it uses a separate thread to ensure the main program isn't delayed.
+
+4. **API Structure**:  
+   - All APIs must start with `/api/v1` (v1 is the version of the API).  
+   - Your API URL should be:  
+     **http://localhost:8088/api/v1/products**  
+     This URL is used to get the data from the file and send it to the frontend.
+
+
+CORS (Cross-Origin Resource Sharing):
+CORS is a security feature implemented in web browsers. It restricts web pages from making requests to a different domain or port than the one that served the web page. For example, if your React frontend runs on port 3000 and your backend API is on port 8088, the browser will block the request due to CORS policy.
+
+Why it works in Postman or browser:
+Postman and direct browser requests don't enforce the same origin policy like a browser executing JavaScript does, so they can fetch data without issues.
+
+Why it fails in the React application:
+Since the React app runs on port 3000 and tries to fetch from a backend on port 8088, the browser treats it as a cross-origin request. Without proper CORS headers set by the backend, the browser will block the request.
+
+-> if we use this url in the front end we get CORS error during fetching(network)
+->CORS means CROSS ORIGIN RESOURCE SHARING;
+- the entire backend is currently running in port of 8088
+- to get the data we are using postman and browser these are desktop application and it is directly hitting to the server and we are able to get the data
+
+-> but hitting same url with react application and its server is running on portNo 3000 , so now in nodejs Anything is coming with different port number it will start throughing the error call CORS (means it is from different resoure) for security Purpose it will not allow
+
+-> for this issue they given one package called  npm i cros(in backed we need to install) in app js and intialize it 
+const cros = require('cros');
+app.use(cros());
+
+-> any request is going to come it will allow
+
+
+
+--------------------------------------------------------------------------------------
+
+
+This assignment is all about accessing the data from the file using get method restapi 
+
+-> one of the easiest way to transfer the data to the frontend in form of json format
+->There are two way to read the file and transfer to frontend
+->one is blocking and non-blocking
+->currently there is no database is present so we are using blocking code because
+-> before running the server the file(which we need to show) should be ready so we are using 'fs' module rather than 'fs/promises'
+-> For any blocking operation nodejs will assign one separate thread from the threadpool
+
+
+->the api should start with /api/v1/products
+->Anything that is written in restapi that should start with /api/v1
+->v1 is version
+-> /api/v1/products this the url  
+
+Api url
+   http://localhost:8088/api/v1/products

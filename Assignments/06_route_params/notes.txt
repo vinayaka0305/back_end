@@ -1,0 +1,9 @@
+from the front end the data is coming in 3 formats
+
+1.req.params
+2.req.body
+3.req.query
+
+if we want to access the data from the front end, in the url is called route param,
+in the url the optional data is coming is called query, and in the body the data will
+knon as body data(req.body);

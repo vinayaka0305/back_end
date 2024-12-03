@@ -91,6 +91,17 @@ console.log("server is listening on port 8080")
 
 
 
+--------------------------------------------------------------------------
+-> without data base proper structure and proper code we have to write
+-> currently we can use fileSystem(means storing data directly inside the file);
+-> struct format we use always json format;
+->if we use data base also , it going to store the file in the form of json
+-> using data from the data base is faster than reading the file(fileSystem)
+->if we read the file from data base it will be faster;
+
+// first we have write the code one rest api using get method
+
+
 
 
 
