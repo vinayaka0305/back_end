@@ -1,0 +1,36 @@
+Here’s a simpler version:  
+
+---
+
+**Status Codes:**  
+- **200–299**: Success! The action worked.  
+- **400–499**: Client-side problem (e.g., something wrong with the request).  
+- **500–599**: Server-side problem (e.g., something went wrong on the backend).  
+
+**Common Codes:**  
+- **200**: Data retrieved successfully.  
+- **201**: New data created successfully.  
+- **404**: The resource you're looking for wasn’t found.  
+
+---
+
+**HTTP Methods (What You Can Do):**  
+- **GET**: Use this to fetch data.  
+- **POST**: Use this to add new data.  
+- **PATCH**: Use this to update existing data.  
+- **DELETE**: Use this to remove data.  
+
+-----------------------------------------------------------------------------------
+Anything from 200-299 - success 
+Anything from 400 to 499 - client side error 
+Anything from 500 to 599 - server side error 
+
+200 - For fetching data 
+201 - For creating data in backend 
+404 - Resource not able to find in backend 
+===========================================
+GET - fetching existing data 
+POST - posting new data 
+PATCH - Editing existing data 
+DELETE - DELETING existing data
+==================================

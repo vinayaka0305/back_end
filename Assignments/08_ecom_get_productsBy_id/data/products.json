@@ -1,0 +1,14 @@
+[
+  {
+    "id":1,
+    "name": "LG",
+    "price": 4999,
+    "stock": 4
+  },
+  {
+    "id":2,
+    "name": "SONY",
+    "price": 6999,
+    "stock": 8
+  }
+]
