@@ -1,0 +1,15 @@
+{
+  "name": "11_express_rest_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vinayaka",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
