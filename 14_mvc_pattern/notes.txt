@@ -1,7 +1,7 @@
 MVC- Modal View Controller;
 
 Modal - Modal means nothing but data (json data or database data coming from database)
-View - User Interface (HTML);
+View - User Interface (HTML-we can render html separately);
 Controller- Businees logic
 
 The code architecture we have to write in mvc pattern(we need to split the code);
