@@ -166,12 +166,5 @@
     "description": "palace",
     "duration": "24-Days",
     "price": "50000"
-  },
-  {
-    "id": 26,
-    "name": "maldivies",
-    "description": "goa",
-    "duration": "124-Days",
-    "price": "5000"
   }
 ]

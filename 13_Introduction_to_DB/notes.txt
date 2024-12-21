@@ -1,0 +1,130 @@
+### What is a Database?  
+A **database** is a permanent storage system for information, usually stored on a hard disk. It is essential for applications because:  
+- It stores all the necessary data.  
+- It plays a crucial role in supporting features like authentication, authorization, and much more.  
+- Without a database, applications would not be able to function properly.  
+
+---
+
+### Types of Databases  
+Databases are broadly categorized into two types:  
+
+1. **SQL (Structured Query Language)**  
+2. **NoSQL (Non-Structured Query Language)**  
+
+---
+
+### SQL Databases  
+SQL databases store data in a structured format with rows and columns, like a table.  
+- **Primary Name**: Also called **RDBMS** (Relational Database Management System).  
+- **Schema**: Requires predefined structures or "schemas" that define how data is organized.  
+  - A schema must be defined first, and only then can data be added.  
+- **Scalability**: SQL databases are **vertically scalable**. This means you can enhance performance by increasing the resources (RAM, CPU, SSD) of the existing server.  
+- **Structure**: Data is stored in **tables**.  
+- **Best Use**: Ideal for applications that require **multi-row transactions** (e.g., accounting systems, legacy systems).  
+- **ACID Properties**:  
+  - **Atomicity**: A transaction is treated as a single unit; if one part fails, the entire transaction is rolled back.  
+  - **Consistency**: Ensures data remains valid and consistent across transactions.  
+  - **Isolation**: Transactions operate independently even when performed simultaneously.  
+  - **Durability**: Data remains safe and accessible even in case of hardware or software failures.  
+- **Support**: SQL databases have excellent support from vendors and consultancies.  
+- **Examples**: MySQL, PostgreSQL, Oracle, MS-SQL Server.  
+
+---
+
+### NoSQL Databases  
+NoSQL databases store data in a more flexible, unstructured format like key-value pairs or documents.  
+- **Primary Name**: Also called **Non-Relational Databases**.  
+- **Schema**: No fixed structure or schema is required (dynamic schema).  
+  - Data can be stored without a predefined format.  
+- **Scalability**: NoSQL databases are **horizontally scalable**. This means you can handle more data by adding more servers (sharding).  
+  - For example, adding more buildings in a neighborhood instead of adding more floors to a single building.  
+- **Structure**: Data can be stored as key-value pairs, documents, graphs, or column-based formats.  
+- **Best Use**: Perfect for applications with **large or rapidly changing datasets**.  
+- **CAP Theorem**: NoSQL follows the CAP theorem:  
+  - **Consistency**: Data remains consistent after operations.  
+  - **Availability**: Data is accessible at all times.  
+  - **Partition Tolerance**: Data can be distributed across multiple servers.  
+- **Support**: Limited vendor and consultancy support, relying mostly on community support.  
+- **Examples**: MongoDB, GraphQL, HBase, Neo4j, Cassandra.  
+
+---
+
+### Why MongoDB?  
+In this context, the focus is on **MongoDB**, a popular NoSQL database.  
+- **Structure**: MongoDB stores data in a **document-oriented format** using JSON-like objects.  
+- **Flexibility**: No predefined schemas are required, making it easy to store diverse data.  
+- **Scalability**: It is horizontally scalable, allowing easy handling of large data and high traffic.  
+
+---
+
+### MongoDB Tools  
+1. **MongoDB Compass**:  
+   - A graphical user interface (GUI) tool to interact with and manage MongoDB servers.  
+   - It allows you to view, query, and analyze data easily.  
+
+2. **Express.js**:  
+   - A backend framework that connects your application to the MongoDB database.  
+   - It enables data interaction, such as saving and retrieving data from MongoDB.  
+
+--------------------------------------------------------------------------------------
+what is DataBase:(Collection of data);
+->It is an information store paremenently inside the hardDisk
+->All over data store here
+->It play very important role for entire application
+->Mainly the backend will fetch the data from DataBase used for Authentication,Autherization etc..
+->without data we can't do anything
+
+DataBase base is divided into two approaches
+
+1.SQL   -> Structured Query Language
+2.NOSQL -> No Structured Query Language
+
+
+SQL->
+* Storing data in the form of table rows and coloums 
+* It is primarly called as RDBMS -> Relational DataBase(means there will be a relation between rows and coloums);
+* SQL requires you to use Pre-defined schemas
+* schemas means-> Before getting any we have to decide schema means only this set of structure we need then it will allow to enter DataBase
+*Scaleability-> In almost all situations SQL DataBases are vertically scalable,this means that you can increase the load on a single server by increasing things like RAM,CPU or SSD
+* structure -> SQL databases are table based;
+* SQL DataBase is better option for application require multi-row trasactions such as an accounting system or for legacy systems that we built for a Relational structure;
+* SQL database follow this mechainsm called ACID Properties(Atomicity,Consistency,Isolation,Durability)
+* Great support is available for all SQL database form thier vendors
+* Also lot of independent consultancies are ther who can help you with SQL databases for a large scale deployement.
+Examples -> MySQL,PostgreSQL,Oracle,MS-SQL Server etc..
+
+Atomicity -> Each trasaction inside the table should get completed otherwise entire process data should be rollback;
+
+Consistency -> All table will have consistent data.
+
+Isolation -> Multiple trasactions will have concurrently(at a time) but separately
+
+Durability -> Data will be available even it is software or hardware file
+
+Availabitiy -> it will available any time;
+
+Partion-Tolerance -> data easily we can able to divide into multiple machines
+
+NOSQL->
+* Storing data in the form of document oriented, key-value pair with no structure
+*It is called Non-Relational or Distrubuted DataBase;
+* No schemas;
+*No schema means any data it will take (dynamic schema)
+* Data can be stored in may ways which means it can be document-oriented,coloum oriented...
+*It is flexible means document can be created without having defined structure
+*Scaleability-> No-SQL DataBases are Horizontal scalable,this means that you can handle more traffic by sharding, or adding more server in your NOSQL DataBase,
+it is similar to adding more floors to the same building v/s adding more buildings to neighborhood
+*Thus NOSQL can ultimately becomes larger and more powefully, making these databases the preffered choice for large or ever-changing data sets
+* structure ->No SQL databases are key-value pairs,document based;
+* NOSQL follows CAP theorem(Consistency,Availabitiy and Partion Tolerance)
+*support-> NOSQL databases you still rely on community support and only limited outside experts are available for setting up and deplypoing your large scale NOSQL database
+
+Examples-> MongoDB,GraphQL,HBase,Neo4j,Cassandra etc...
+
+In the NOSQL we are going to use MongoDB DataBase 
+MongoDB Compass is a tool to connect with MongoDB Server  
+And express will connet with MongoDB 
+
+--------------------------------------------------------------------------------------
+
