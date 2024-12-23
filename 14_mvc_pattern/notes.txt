@@ -1,3 +1,10 @@
+set-up
+1.npm init
+2.npm i express
+3.npm i dotenv
+4.npm mongodb (to connect mongodb with node);
+
+-----------------------------------------------------------------
 MVC- Modal View Controller;
 
 Modal - Modal means nothing but data (json data or database data coming from database)
@@ -5,3 +12,10 @@ View - User Interface (HTML-we can render html separately);
 Controller- Businees logic
 
 The code architecture we have to write in mvc pattern(we need to split the code);
+
+
+----------------------------------------------------------------------
+
+With Node.js we can connect directly with mongodb database and there is no schema here
+means there is no rule any data type any property we can add
+ 
