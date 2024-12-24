@@ -19,6 +19,7 @@ const employeeSchema = mongoose.Schema({
 
   // salary: A mandatory field of type Number to store the employee's salary
   salary: { type: Number, required: true },
+  role:{type:String,enum:["admin","user",'superadmin']}
 });
 
 // Explanation of the schema:

@@ -20,8 +20,8 @@ const createOperation = async () => {
     const employeePost = new Employee({
       firstName: "Vinayaka", // Setting the first name (required field)
       age: 28,              // Setting the age (required field)
-      salary: 40000         // Setting the salary (required field)
-      // Note: `lastName` and `status` are optional and will use default values if not provided
+      salary: 40000,         // Setting the salary (required field)
+      role:"FSD"                      // Note: `lastName` and `status` are optional and will use default values if not provided
     });
 
     // Saving the employee document to the database
@@ -37,3 +37,14 @@ const createOperation = async () => {
 
 // Calling the createOperation function to execute the create operation
 createOperation();
+
+const findOperation = async()=>{
+  try {
+    let result = await Employee.find();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// findOperation();
