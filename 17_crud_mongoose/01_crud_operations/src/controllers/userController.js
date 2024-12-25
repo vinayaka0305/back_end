@@ -36,8 +36,44 @@ const findUser = async () => {
   }
 };
 
+const findUserById = async (id) => {
+  try {
+    // console.log(id);
+    let result = await UserSchema.findById(id);
+    // console.log(result);
+    return result;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const deleteUserById = async(id)=>{
+  try {
+    const result = await UserSchema.findByIdAndDelete(id);
+    return result
+  } catch (error) {
+    throw error
+  }
+}
+
+
+const updateUserById = async(id,body)=>{
+  try{
+
+    const result = await UserSchema.findByIdAndUpdate(id,body,{
+      new:true
+    })
+    return result
+  }catch(err){
+    throw err
+  }
+}
+
 // Export the functions for use in other modules, such as route handlers
 module.exports = {
   createUsers,
-  findUser
+  findUser,
+  findUserById,
+  deleteUserById,
+  updateUserById,
 };
