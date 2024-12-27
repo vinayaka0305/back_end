@@ -1,0 +1,123 @@
+
+### **Folder Structure**
+```plaintext
+crud-operation/
+├── package.json
+├── .env
+├── .gitignore
+├── src/
+    ├── controller/
+    ├── models/
+    ├── routes/
+    ├── app.js
+    └── index.js
+```
+
+---
+
+### **Packages to Install**
+1. `express` - For creating the server and handling routes.
+2. `mongoose` - For database connection and schema modeling.
+3. `dotenv` - For environment variable management.
+4. `nodemon` - For auto-restarting the server during development.
+
+### **Additional Suggested Packages**
+- `cors` - To handle cross-origin requests between frontend and backend.
+- `body-parser` - Although `express.json()` is usually sufficient, `body-parser` is useful for handling different content types in the request body if required.
+
+---
+
+### **Mongoose Methods for CRUD Operations**
+1. **`connect()`** - To establish a connection to the MongoDB database.
+2. **`save()`** - To save a document to the database.
+3. **`find()`** - To retrieve documents from the database.
+4. **`findById()`** - To retrieve a single document by its unique `_id`.
+5. **`findByIdAndUpdate()`** - To update a document by its `_id` and return the updated document.
+6. **`findByIdAndDelete()`** - To delete a document by its `_id`.
+
+---
+
+### **Creating a Mongoose Schema**
+1. **`Schema`**: Defines the structure of the document (fields and their data types).
+   ```javascript
+   const mongoose = require('mongoose');
+
+   const userSchema = new mongoose.Schema({
+       name: { type: String, required: true },
+       email: { type: String, required: true, unique: true },
+       age: { type: Number }
+   });
+   ```
+2. **`Model`**: A constructor to create and manage documents in the database.
+   ```javascript
+   const User = mongoose.model('User', userSchema);
+   module.exports = User;
+   ```
+
+---
+
+### **Accessing Data from Frontend**
+1. **`req.body`**: Access data sent in the request body (e.g., POST, PUT requests).  
+   Ensure middleware like `express.json()` or `body-parser` is used to parse incoming JSON.
+2. **`req.params`**: Access URL parameters (e.g., `/user/:id`).
+3. **`req.query`**: Access query parameters in the URL (e.g., `/user?id=123`).
+
+---
+
+### **Parsing and Middleware**
+1. **`express.json()`**: Middleware to parse JSON data in the request body.
+   ```javascript
+   app.use(express.json());
+   ```
+2. **`express.urlencoded({ extended: true })`**: Middleware to parse URL-encoded data (e.g., form submissions).
+   ```javascript
+   app.use(express.urlencoded({ extended: true }));
+   ```
+3. **`cors()`** (optional): Middleware to enable CORS.
+   ```javascript
+   const cors = require('cors');
+   app.use(cors());
+   ```
+
+---
+
+This structure and details should make your CRUD operation application well-organized and robust!
+
+
+-----------------------------------------------------------------------------------
+Folder Structure;
+
+crud operation->
+package.json
+    .env
+    .gitignore
+    src
+        controller
+        models
+        routes
+        app.js
+        index.js
+
+packages need to install->
+
+1.express
+2.mongoose
+3.dotenv
+4.nodemon
+
+mongoose methods for crud operations->
+1. connect()
+2. save()
+3. find()
+4. findById()
+5. findByIdAndUpdate()
+6. findByIdAndDelete()
+
+Creating mongoose schema->
+1.Schema
+2.Model
+
+To access data from Frontend->
+1. body -> req.body
+2. params -> req.params
+3. for parsing -> express.json()

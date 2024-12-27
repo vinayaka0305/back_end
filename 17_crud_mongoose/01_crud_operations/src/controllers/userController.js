@@ -27,6 +27,8 @@ const findUser = async () => {
   try {
     // Use the `find()` method from Mongoose to fetch all user documents from the collection
     let result = UserSchema.find();
+    // let result = UserSchema.find().skip(1);
+    // let result = UserSchema.find().limit(2);
 
     // Return the retrieved user data
     return result;

@@ -1,0 +1,3 @@
+Pagination
+Skip() -> it will skip the data till number 
+limit() -> it will limit the data till that number
