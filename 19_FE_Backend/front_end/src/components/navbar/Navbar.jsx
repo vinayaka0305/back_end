@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 
+  const navigate = useNavigate();
+
  const logoutHanlder = ()=>{
    sessionStorage.removeItem('token')
+   navigate('/login')
  }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

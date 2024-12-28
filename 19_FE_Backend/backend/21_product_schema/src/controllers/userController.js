@@ -1,12 +1,15 @@
 const userSchema = require("../models/userSchema");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt")
+
 
 const creationOfUsers = async (req, res) => {
   try {
+    const hashedPassword = bcrypt.hashSync(req.body.password,10);
     const user = await new userSchema({
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password,
+      password: hashedPassword,
     });
     const result = await user.save();
     res.status(201).json({
@@ -40,7 +43,15 @@ const login = async (req, res) => {
           message: "email is not found",
         });
       }
-      if (user && user.password != password) {
+      
+      // if (user && user.password != password) {
+      //   return res.status(404).json({
+      //     status: "failed",
+      //     message: "wrong password ",
+      //   });
+      // }
+      const passwordResult = bcrypt.compareSync(password,user.password);
+      if (user && !passwordResult) {
         return res.status(404).json({
           status: "failed",
           message: "wrong password ",

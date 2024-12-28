@@ -1,10 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProduct();
@@ -18,7 +16,7 @@ const Dashboard = () => {
       })
       .catch((err) => {
         console.log(err);
-        navigate('/login')
+       
       });
   };
   return (
