@@ -1,16 +1,19 @@
 {
-  "name": "19_dummy",
+  "name": "21_product_schema",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon ./src/index",
+    "start": "nodemon src/index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2"
   }
 }
