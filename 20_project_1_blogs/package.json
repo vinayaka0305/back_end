@@ -1,0 +1,19 @@
+{
+  "name": "20_project_1_blogs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vinayaka_AV",
+  "license": "ISC",
+  "description": "A simple blog management system using Express, MongoDB, and JWT for authentication",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2"
+  }
+}
