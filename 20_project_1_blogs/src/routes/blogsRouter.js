@@ -11,7 +11,7 @@ const {
 const authorization = require("../middleware/authorization");
 
 router.post("/", isLoggedIn, createBlogs);
-router.get("/", isLoggedIn, retrieveBlog);
+router.get("/",retrieveBlog);
 router.delete("/:id", isLoggedIn, authorization, deleteBlogsById);
 router.patch("/:id", isLoggedIn, authorization, updateBlogsById);
 router.patch("/comments/:id", isLoggedIn, updateBlogsComment); 
