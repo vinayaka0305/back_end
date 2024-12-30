@@ -2,6 +2,7 @@ const UserSchema = require("../models/userSchema"); // Importing the User model/
 const jwt = require('jsonwebtoken'); // Importing JWT for token generation
 const bcrypt = require('bcrypt'); // Importing bcrypt for password hashing and comparison
 
+
 // Register function to handle user registration
 const register = async (req, res) => {
   try {
@@ -45,8 +46,7 @@ const login = async (req, res) => {
         status: "failed",
         message: "Please provide email or password", // Informing user about missing credentials
       });
-    }
-
+    }else{
     // Finding the user in the database by email
     const user = await UserSchema.findOne({ email: email });
     if (!user) {
@@ -66,8 +66,8 @@ const login = async (req, res) => {
     }
 
     // Generating a JWT token for authenticated users
-    const token = jwt.sign({ payload: user }, "vinayaka_avv_sec", {
-      expiresIn: "10m", // Setting token expiration time to 10 minutes
+    const token = jwt.sign({name:user.name,id:user._id}, "vinayaka_avv_sec", {
+      expiresIn: "1h", // Setting token expiration time to 10 minutes
     });
 
     // Sending a success response with the token
@@ -75,6 +75,7 @@ const login = async (req, res) => {
       status: "login success",
       token: token, // Returning the generated token
     });
+  }
   } catch (error) {
     // Handling errors and sending a failure response
     res.status(500).json({
@@ -84,5 +85,29 @@ const login = async (req, res) => {
   }
 };
 
+const getUerInformation = async(req,res)=>{
+  try {
+    const data = await UserSchema.findById(req.params.id);
+    if(!data){
+     return res.status(404).json({
+        status:"failed",
+        messgae:"user not found"
+      })
+    }else{
+      res.status(200).json({
+        status:"success",
+        messagge:"user found",
+        data
+      })
+    }
+   
+  } catch (error) {
+    res.status(500).json({
+      status:"failed",
+      messgae:error.message
+    })
+  }
+}
+
 // Exporting the register and login functions for use in other parts of the application
-module.exports = { register, login };
+module.exports = { register, login,getUerInformation };

@@ -7,14 +7,15 @@ const isLoggedIn = (req, res, next) => {
     let token = req.headers.authorization;
 
     // Logging the token to check its presence
-    console.log(token);
+    // console.log(token);
 
     // Verifying the token using the secret key
     const decodeToken = jwt.verify(token, "vinayaka_avv_sec");
 
     // Logging the decoded token for debugging purposes
-    console.log(decodeToken);
-
+    // console.log(decodeToken);
+    req.id = decodeToken.id,
+    req.created = decodeToken.name
     // Proceeding to the next middleware or route handler if the token is valid
     next();
   } catch (error) {

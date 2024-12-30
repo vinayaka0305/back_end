@@ -17,8 +17,10 @@ const blogUserSchema = mongoose.Schema({
   password: { 
     type: String, // The `password` field is a string
     require: true, // This field is mandatory (note: `required` should be used instead of `require`)
-    unique: true, // Ensures the `password` value is unique (though it's unusual for passwords to be unique; reconsider this)
   },
+  later:{
+    type:Array
+  }
 });
 
 // Exporting the `blogUser` model based on the schema
