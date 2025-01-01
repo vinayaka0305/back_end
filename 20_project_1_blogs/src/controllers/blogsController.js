@@ -80,7 +80,7 @@ const updateBlogsById = async (req, res) => {
         messgage: "updated the blog",
         data,
       });
-    }
+    } 
   } catch (error) {
     res.status(500).json({
       status: "failed",

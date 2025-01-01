@@ -1,0 +1,129 @@
+Floder Structure
+1. create one folder with a name
+2. npm init
+3. npm install express dotenv nodemon cors mongoose
+4. create two files .env and .gitignore
+5. create one src folder
+        controllers
+        middlewares
+        routes
+        models
+        app.js
+        index.js
+
+Proceess for creating curd operation 
+First we need to start from schema inside the model folder we have to write schema
+why we need schema?
+-> we are using mongoose , mongoose is ODM(Objecet Data Model)
+-> why we are mongoose currently for developing backend application means 
+* Our entire data will come from frontend 
+* Mongodb has no schema means any type of data we can able to insert 
+* Now we want to use Mongodb but we want schema, so thats why we are going to use the package(mongoose);
+*mongoose will act like a middleware b/w express and Mongodb 
+* mongoose will suport to insert a proper data in Mongodb database
+ 
+-> For any application first we have to develop user schema, for developing schema import the mongoose package, inside mongoose we have one method call mongoose.Schema 
+inside the schema(it is like a Object) create a schema inside it and  to create collection mongoose.model with a collection name and schema
+
+* And also follow name convention if give name userSchema and give controller userController
+
+-> inside the userController import the userSchema 
+
+-----> inside the controller first you do create operation  
+-> inside the controller or middleware any method you write we will get the default(req,res) given by express 
+
+-> In the user schema registration process we have to give new key to create with userSchema
+
+->But in case of password we have given hashed password means password we should not store directly inside the database, so for that we have to one package called bcrypt
+we have to install it.
+ --->Bcrypt -> instead of storing directly the password data the bcrypt will encrypt the data and the name they have given bcrypt bcrypt.hashSync(req.body.password,10);
+---> bcrypt has two parameters 1st parameter is raw password and 2nd parameter is salt, so salt means in that encryption how many extra character you want to add it there, so you can give any whole numbers 10,20,30 but is the standard
+-> in bcrypt hashSync method it is synchronous mehtod and it will encrypt the data and we can store inside the database
+
+-> After creating schema and directly we can use save() method, it is a method given inside the mongoose and it is going to return promise so thaty we have used asych and await, once data is ready we can send the response and if any errors you can through the error 
+
+-> the userSchema and controller we have to export and then only we can import
+
+---------------> Once schema and controller is ready next we have to create routes
+
+-> Router setup-> userRoutes
+-> here we need to setup routes because we have different differnt paths, so we have to import express and create router instance express.Express() and provide paths
+
+----------------> after router router setup go to index.js and app.js 
+
+-> in the app.js we have one method call express.json() it will parese data with middleware(app.use(express.json));
+-> And if we want to connect with frontend we need to import cors
+-> After we and give standard router set app.use('/api/v1/users', userRoutes)
+-> need to export app with module.exports = app;
+
+-------------> After app.js file,in the index.js file we have to import app,dotenv,mongoose and we have to config the dotenv.config();
+
+->mongoose.connect method we have to use mongoose.conntect(process.env.URI) after that then block and catch block we have give because it will return promise;
+
+-> we need to run the express app otherwise it will not allow frontend requests 
+
+app.listen(process.env.PORT,()=>{
+        console.log('server is running')
+})
+
+Here Mongodb server and express server two servers are running at a time 
+
+--------------------------------------------------------------------------------
+we have registration schema and registration controller 
+-> during registation it will create data with the schema and after registration we have to do login 
+
+-> so in the login, why we need login means, we have blogsController and blogsRoutes and blogschema and inside the blogsroutes we have multiple methods get post patch delete for blogs and these methods need security and why we need security means beacause in any platform registation is anyone can do and also everything is apis here but some apis are not protected so any can register but after login what are things we can able to do so that api need a protection means only with id i can delete the data and with same id we can get the data 
+
+-> Here we have frontend app and backend app two separate aplication ruuning separately
+-> now for example i login in the backend will verify after verify next any api is going to come how again i need to trust you,so this is the main problem because both are running in separate app, so to overcome this they developed one thing called token
+
+-> What token will do
+---> once you login the backend will and they will send one encrypted data (here token is nothing but encrypted data) so with this any api we need to access it will again after login, so next we will attach one middleware ,the middleware will decrypt the data and they will verify the token what ever we send it is valid token and at the same the person is doing some operation wether he is eligible to that operation if yes then he can able to access the that particular data. So it is called jsonwebtoken
+
+-> in the userController import jsonwebtoken and insidd we have login method and we want to multiple verification if everything is fine then he can able to login
+
+-> so during login from the req.body we get email and password data
+
+-> so first thing we need to check, if email is not there and password is not there we should the error else 
+
+-> in the else part we have method findOne() it will bring only one data
+ here we are find const user = ({email:email}) if user not there send error response
+
+-> find the findOne will bring one entire document not only email;
+
+-> And after we need to bcrypt the password, for ex: the user will give 12345 but inside data we have encrypted data in the bcrypt we have one compareSych method it compare the usertyped data and data base data if it write it allow other wise dont we need to send error response
+
+-> after all verification we need to create the token with jsonwebtoken 
+->sing() method have 3 parameter 1st is entire Object(here we can provide the data which ever is the private information, if again they are comingback means we should know who is the user and what is there primary id)
+2nd parameter is jwt token secret key and 3rd parameter is when it going to expire
+jwt.sign({name:user.name,id:user._id},"secret word",expriresIn:"1hr")
+
+-> after creating token we can send it to the frontend with response
+
+------------------------------------------------------------------------------------
+
+for blogs we need to create schema so inside schema we have 
+
+title:{type:String,required:true,minlength:3},
+description:{type:String,required:true},
+user_id:{type:String},
+creator_name:{type:String},
+comments:{type:Array}
+
+why this user_id:{type:String}?
+-> because we want know that who's created that particular blog and here we are storing the current loginc users primary key of that particular person (means _id)
+
+creator_name:{type:String}, this for displaying name of the user 
+
+-----------------------------------------------------------------------------------
+In the blogsRoutes  router.post("/",isLoggedIn,createBlogs)
+-> here we used is isLoggedIn middleware, so when ever we want to create the blogs, first it will go to middleware
+-> And inside middleware we have isLoggedIn method, in this we req,res,next  properties
+-> here in this method we need verify the particular token because without token we can't able to create blogs
+
+-> the token will come form headers (req.headers.authorization);
+-> for verifying we have one from method jsonwebtoken called .verify()
+-> verifying will take two parameter 1st one is current token and secret keyword
+-> so once it is verified we can able to see the decoded data 
+-> and that data we all data that is given the .sing({object}) during login
+-> for the decoded data extra id and user name we need to send it to the next flow through the req global object after we process with next() method and if any error is throw it with error response
