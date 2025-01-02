@@ -80,7 +80,7 @@ const updateBlogsById = async (req, res) => {
         messgage: "updated the blog",
         data,
       });
-    } 
+    }
   } catch (error) {
     res.status(500).json({
       status: "failed",
@@ -110,10 +110,42 @@ const updateBlogsComment = async (req, res) => {
     });
   }
 };
+
+const updateBlogsByVotes = async (req, res) => {
+  //here true means like, false means dislike we can use boolean value
+  try {
+    const result = await blogsSchema.findById(req.params.id);
+    if (req.body.vote) {
+      result.upvote++;
+    } else {
+      result.downvote++;
+    }
+    //after like or dislike we need to count how many upvote and dowmvote is there
+    //here the has already liked if try tries to like another one time we need to avoid
+    result.votes.push(req.id);
+    const updatedByVote = await blogsSchema.findByIdAndUpdate(
+      req.params.id,
+      result,
+      { new: true }
+    );
+    res.status(200).json({
+      status: "success",
+      messgage: "upvote/downvote updated successfully",
+      updatedByVote,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "failed",
+      messgage: error.message,
+    });
+  }
+};
+
 module.exports = {
   createBlogs,
   retrieveBlog,
   deleteBlogsById,
   updateBlogsById,
   updateBlogsComment,
+  updateBlogsByVotes,
 };

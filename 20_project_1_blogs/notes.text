@@ -127,3 +127,76 @@ In the blogsRoutes  router.post("/",isLoggedIn,createBlogs)
 -> so once it is verified we can able to see the decoded data 
 -> and that data we all data that is given the .sing({object}) during login
 -> for the decoded data extra id and user name we need to send it to the next flow through the req global object after we process with next() method and if any error is throw it with error response
+
+--------> In the blogs controller if we want to save the data new blogschema({
+        title:req.body.title,
+        description:req.body.description,
+        user_id:req.id,
+        comments:req.body.comments?req.body.comments:[],
+        created:req.created
+})
+
+-> any express method have there parameters req,res,and next() it optional
+-> the next is it will move to next method
+
+--> here comments is optional, if comments is there store the comments else store empty Array, in the future we can able to push the data inside the array
+
+-> After using save() we can the data in the database
+
+-------------------------------------------------------------------------------------
+
+-> Delete blogs
+
+-> to the delete the blog, we have one method findByIdAndDelete(req.params.id)
+-> here but the thing is the person who has created the data, that person only need to delete the data, to achive this we have to add middlewares like isLoggedIn and authorization, measn the has to login first, and after logic, it should go to next middleware called authorization
+
+Inside authorization we have to import blogschema
+
+after we have write asych and await method called authorization it has three properties req,res,next
+
+using trycatch, try{
+        const result = await blogschema.findById(req.params.id);
+        //here we have give the id of the blog which we want to delete
+        // result.user --> blogs creator id
+        // req.id --> current login person id
+        if(result.user == req.id){
+                //inside the blogs we have the property called user(inside the user we have the id of blog creator and req.id is thecurrent login user, if both match, means the person who has created the blog and if that person is logged in it will go next(), other don't we can the err response)
+                next()
+        }else{
+                res.status(401).json({
+                        status:"failed",
+                        message:"authorization failed"
+                })
+        }
+}
+
+this whole process is called authorization..............
+
+we can attach this authorization middleware, where is required for example delete,and update
+--------------------------------------------------------------------------------------
+
+Comments->
+
+--> inside the blogschema we have given comments:{type:Array}
+-> Array means we store multiple data or list of data
+-> Here we have to update only array data, means it have to update exsisting data and the new data, we have to add inside the array
+
+for this, inside the blogsController we have written one method called updateBlogsCommet
+
+const updateBlogsCommet =asych(req,res)=>{
+        try{
+        const result = await blogschema.findById(req.params.id);
+        result.comments.push(req.body.comments);
+        //here once we push the data entire document we can update entire document with new comment
+        const updatedComments = await blogschema.findByIdAndUpdate(result);
+        res.status(200).json({
+                status:"comment updated"
+                updatedComments
+        })
+        }catch(err){
+              res.status(401).json({
+                        status:"failed",
+                        message:error.message
+                })   
+        }
+}

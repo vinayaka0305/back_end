@@ -6,14 +6,17 @@ const {
   retrieveBlog,
   deleteBlogsById,
   updateBlogsById,
-  updateBlogsComment
+  updateBlogsComment,
+  updateBlogsByVotes
 } = require("../controllers/blogsController");
 const authorization = require("../middleware/authorization");
+const voteAuthorization = require("../middleware/votesAuthorization");
 
 router.post("/", isLoggedIn, createBlogs);
 router.get("/",retrieveBlog);
 router.delete("/:id", isLoggedIn, authorization, deleteBlogsById);
 router.patch("/:id", isLoggedIn, authorization, updateBlogsById);
 router.patch("/comments/:id", isLoggedIn, updateBlogsComment); 
-
+router.patch("/vote/:id", isLoggedIn,voteAuthorization,updateBlogsByVotes); 
+  
 module.exports = router;
