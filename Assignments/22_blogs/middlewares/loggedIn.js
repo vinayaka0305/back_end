@@ -5,9 +5,9 @@ const loggedIn = async (req, res, next) => {
     const token = req.headers.authorization;
 
     const decodeToken = jwt.verify(token, "vinayaka");
-
+    // console.log(decodeToken);
     req.id = decodeToken.id;
-    req.created = decodeToken.token;
+    req.created = decodeToken.name;
     next();
   } catch (error) {
     res.status(401).json({
